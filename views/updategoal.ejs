@@ -1,0 +1,41 @@
+<!-- updatecontact.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Pass a JavaScript variable to a partial in EJS -->
+  <%- include('partials/head.ejs', { title: "Update page" }) %>
+<body>
+  <%- include('partials/navbar') %>
+
+  <div class="content">
+    <div class="update">
+      <h2>Update Contact</h2>
+      <form action="/single-contact/<%= contact._id %>?_method=PUT" method="POST">
+        <label>firstName:</label>
+        <input type="text" value="<%= contact.firstName %>" id="firstName" name="firstName" required />
+
+        <label for="lastName">lastName:</label>
+        <textarea id="lastName" name="lastName" rows="4" required><%= contact.lastName %></textarea>
+
+        <label for="phone">Target Date:</label>
+        <input type="date" id="phone" name="phone" required value="<%= contact.phone %>" />
+
+        <label for="email">Target Date:</label>
+        <input type="date" id="email" name="email" required value="<%= contact.email %>" />
+
+        <label>Author:</label>
+        <select name="author">
+          <option value="sami">Sami</option>
+          <option value="rami">Rami</option>
+        </select>
+
+        <label for="address">Achieved:</label>
+        <input type="checkbox" id="address" name="address" <% if (contact.address) { %>checked<% } %> />
+
+        <button type="submit">Update Contact</button>
+      </form>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
